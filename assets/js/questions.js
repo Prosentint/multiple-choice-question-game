@@ -1,7 +1,7 @@
 // list of questions, answer choices and correct answers for quiz game
 questions = [
     {
-        question: "Which is correct",
+        question: "Which is correct?",
         answers: ["Wrong", "Correct", "Wrong", "Wrong"],
         correctAnswer: 1
     },

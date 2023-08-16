@@ -46,7 +46,7 @@ nav {
 }
 
 /* Styles the Start button */
-#startBtn {
+button {
     margin: 5px;
     padding: 10px 20px;
     font-size: 16px;
@@ -54,11 +54,18 @@ nav {
     background-color: #3E236E;
 }
 
-/* Changes */
-#startBtn:hover {
+/* Changes button color on hover */
+button:hover {
     background-color: #966FD6;
 }
 
+/* Displays answer choices ontop of each other rather than side to side */
+#answers {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Exists to properly space body flexbox */
 footer{
     height: inherit;
 }
