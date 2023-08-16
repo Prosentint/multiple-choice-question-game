@@ -1,4 +1,4 @@
-// creating variables that point to variouis html elements
+// creating variables that point to various html elements
 var startBtn = document.getElementById("startBtn");
 var description = document.getElementById("description");
 var questionBox = document.getElementById("questionBox");
@@ -10,6 +10,7 @@ var timeLeftEl = document.getElementById("timeLeft");
 var initialsInput = document.getElementById("initials");
 var submitBtn = document.getElementById("submitBtn");
 var scoreForm = document.getElementById("scoreForm");
+var scoresList = document.getElementById("scores");
 
 // creating varaibles that will be needed
 var gameRunning = false;
@@ -98,14 +99,53 @@ function endGame() {
     scoreForm.classList.remove("hidden");
 }
 
+// Runs when submiting the score form ensures that initials were submited to accompany the score. If it does then it saves the score and redirects to highscores
 function submitScore(event) {
     event.preventDefault();
+    var initials = initialsInput.value.toUpperCase();
+    if (initials.length < 2){
+        alert("Must input atleast 2 initials to submit");
+        return;
+    }
+    var submittedScore = {initials, score};
 
+    // checks the current value in scores local storage and returns as objects unless empty
+    var scores = JSON.parse(localStorage.getItem("scores")) || [];
+    scores.push(submittedScore);
+    // sorts local storage values so that highest score is on top
+    scores.sort((a, b) => b.score - a.score);
+    // saves to local storage
+    localStorage.setItem("scores", JSON.stringify(scores));
     location.href = "highscores.html";
+    displayScores();
 }
 
-// runs when start button is clicked
-startBtn.addEventListener("click", startGame);
+function displayScores() {
+    scoresList.innerHTML = "";
 
-// runs when submit button is clicked
-submitBtn.addEventListener("click", submitScore);
+    // checks the current value in scores local storage and returns as objects unless empty
+     var scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+    // cycles through each object in scores local storage and prints out initials and score
+    scores.forEach(score => {
+        var li = document.createElement("li");
+        li.classList.add("score");
+        li.textContent = `${score.initials}: ${score.score}`;
+        scoresList.appendChild(li);
+    });
+}
+console.log(window.location.pathname);
+
+// Checks what page the user is on
+if (document.body.classList.contains('index')) {
+    // checks if start button is clicked
+    startBtn.addEventListener("click", startGame);
+
+    // checks if submit button is clicked
+    submitBtn.addEventListener("click", submitScore);
+}else if(document.body.classList.contains('highscore')){
+    displayScores();
+}
+
+
+
