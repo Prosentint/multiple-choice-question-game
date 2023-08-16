@@ -11,6 +11,7 @@ var initialsInput = document.getElementById("initials");
 var submitBtn = document.getElementById("submitBtn");
 var scoreForm = document.getElementById("scoreForm");
 var scoresList = document.getElementById("scores");
+var clearScoresBtn = document.getElementById("clearScoresBtn");
 
 // creating varaibles that will be needed
 var gameRunning = false;
@@ -134,7 +135,12 @@ function displayScores() {
         scoresList.appendChild(li);
     });
 }
-console.log(window.location.pathname);
+
+// clears local storage with scores key
+function clearScores() {
+    localStorage.removeItem("scores");
+    displayScores();
+}
 
 // Checks what page the user is on
 if (document.body.classList.contains('index')) {
@@ -144,6 +150,8 @@ if (document.body.classList.contains('index')) {
     // checks if submit button is clicked
     submitBtn.addEventListener("click", submitScore);
 }else if(document.body.classList.contains('highscore')){
+    // checks if clearScores button is clicked
+    clearScoresBtn.addEventListener("click", clearScores);
     displayScores();
 }
 
