@@ -2,10 +2,11 @@
 var startBtn = document.getElementById("startBtn");
 var description = document.getElementById("description");
 var questionBox = document.getElementById("questionBox");
-var questionElement = document.getElementById("question");
+var questionEl = document.getElementById("question");
 var answers = document.getElementById("answers");
 var result = document.getElementById("result");
 var resultText = document.getElementById("resultText");
+var timeLeftEl = document.getElementById("timeLeft");
 
 // creating varaibles that will be needed
 var gameRunning = false;
@@ -19,13 +20,28 @@ function startGame() {
     description.classList.add("hidden");
     questionBox.classList.remove("hidden");
     gameRunning = true;
+    timeLeftEl.innerText = timeLeft;
     showQuestion();
+    startTimer();
+}
+
+// Starts a timer for how ever many seconds timeLeft is, if timeLeft goes below 0 or the game ended some other how before then it clears the timer
+function startTimer() {
+ var timer = setInterval(function() {
+    timeLeft--;
+    timeLeftEl.innerText = timeLeft;
+    if ((timeLeft <= 0)|| (!gameRunning)) {
+        clearInterval(timer);
+        timeLeftEl.innerHTML = "";
+        endGame();
+    }
+ }, 1000)
 }
 
 // displays the current question and answers, based on currentQuestionIndex, onto the questionbox 
 function showQuestion() {
     var question = questions[currentQuestionIndex];
-    questionElement.innerText = question.question;
+    questionEl.innerText = question.question;
     answers.innerHTML = "";
     // cycles through each possible answer choice for a given question and appens the selections to the page
     question.answers.forEach((answer, index) => {
@@ -68,6 +84,7 @@ function showResults() {
 
 // Called when you run out of questions or timer ends to hide question box and reveal final score
 function endGame() {
+    gameRunning = false;
     questionBox.classList.add("hidden");
     resultText.innerText = "Game Over! Your final score is " + score;
     result.classList.remove("hidden");
