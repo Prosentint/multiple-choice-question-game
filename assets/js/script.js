@@ -8,6 +8,7 @@ var result = document.getElementById("result");
 var resultText = document.getElementById("resultText");
 
 // creating varaibles that will be needed
+var gameRunning = false;
 var currentQuestionIndex = 0;
 var timeLeft = 60;
 var score = 0;
@@ -17,6 +18,7 @@ function startGame() {
     startBtn.classList.add("hidden");
     description.classList.add("hidden");
     questionBox.classList.remove("hidden");
+    gameRunning = true;
     showQuestion();
 }
 
@@ -25,6 +27,7 @@ function showQuestion() {
     var question = questions[currentQuestionIndex];
     questionElement.innerText = question.question;
     answers.innerHTML = "";
+    // cycles through each possible answer choice for a given question and appens the selections to the page
     question.answers.forEach((answer, index) => {
       var button = document.createElement("button");
       button.innerText = answer;
@@ -34,7 +37,9 @@ function showQuestion() {
     });
   }
 
+  // Runs when one of the answer choice buttons is chosen takes the index of the answer selected and compares to to the saved index of the known correct answer
   function selectAnswer(selectedIndex, correctIndex) {
+        // determines if the selection was correct or not
     if (selectedIndex === correctIndex) {
       score += 10;
       resultText.innerText = "Correct!";
@@ -43,7 +48,19 @@ function showQuestion() {
       resultText.innerText = "Incorrect!";
     }
     currentQuestionIndex++;
-    
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    }
+    showResults();
+  }
+
+  // called after selecting an answer and will display either correct or incorrec
+  function showResults() {
+    result.classList.remove("hidden");
+    // removes the result of the last question after some time
+    setTimeout(function() {
+        result.classList.add("hidden");
+    }, 700);
   }
 
 // runs when start button is clicked
