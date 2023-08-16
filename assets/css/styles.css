@@ -20,24 +20,18 @@ h1 {
     padding-bottom: 1%;
 }
 
+/* Sizes heading bar*/
 header {
     width: 100%;
     padding: 50px;
 }
   
+/* Displays items in heading bar in a flex box on opposite sides of the webpage*/
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-}
-  
-.nav-left {
-    margin-left: 20px;
-}
-  
-.nav-right {
-    margin-right: 20px;
 }
 
 /* Centers text */
