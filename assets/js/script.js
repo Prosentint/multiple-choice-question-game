@@ -35,10 +35,10 @@ function showQuestion() {
       button.addEventListener("click", () => selectAnswer(index, question.correctAnswer));
       answers.appendChild(button);
     });
-  }
+}
 
   // Runs when one of the answer choice buttons is chosen takes the index of the answer selected and compares to to the saved index of the known correct answer
-  function selectAnswer(selectedIndex, correctIndex) {
+function selectAnswer(selectedIndex, correctIndex) {
         // determines if the selection was correct or not
     if (selectedIndex === correctIndex) {
       score += 10;
@@ -50,18 +50,28 @@ function showQuestion() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestion();
+    } else {
+        endGame();
+        return;
     }
     showResults();
-  }
+}
 
-  // called after selecting an answer and will display either correct or incorrec
-  function showResults() {
+// called after selecting an answer and will display either correct or incorrec
+function showResults() {
     result.classList.remove("hidden");
     // removes the result of the last question after some time
     setTimeout(function() {
         result.classList.add("hidden");
     }, 700);
-  }
+}
+
+// Called when you run out of questions or timer ends to hide question box and reveal final score
+function endGame() {
+    questionBox.classList.add("hidden");
+    resultText.innerText = "Game Over! Your final score is " + score;
+    result.classList.remove("hidden");
+}
 
 // runs when start button is clicked
 startBtn.addEventListener("click", startGame);
