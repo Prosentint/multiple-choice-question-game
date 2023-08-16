@@ -7,6 +7,9 @@ var answers = document.getElementById("answers");
 var result = document.getElementById("result");
 var resultText = document.getElementById("resultText");
 var timeLeftEl = document.getElementById("timeLeft");
+var initialsInput = document.getElementById("initials");
+var submitBtn = document.getElementById("submitBtn");
+var scoreForm = document.getElementById("scoreForm");
 
 // creating varaibles that will be needed
 var gameRunning = false;
@@ -92,7 +95,17 @@ function endGame() {
     questionBox.classList.add("hidden");
     resultText.innerText = "Game Over! Your final score is " + score;
     result.classList.remove("hidden");
+    scoreForm.classList.remove("hidden");
+}
+
+function submitScore(event) {
+    event.preventDefault();
+
+    location.href = "highscores.html";
 }
 
 // runs when start button is clicked
 startBtn.addEventListener("click", startGame);
+
+// runs when submit button is clicked
+submitBtn.addEventListener("click", submitScore);
