@@ -3,11 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <!-- Links to reset css to standardize web viewing aswell as styles css -->
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
   <title>Quiz Game</title>
 </head>
 <body>
-
-  <script src="script.js"></script>
+    <!-- Holds all the content on this page -->
+    <div class="main">
+        <h1>Coding Quiz Game</h1>
+        <!-- Start button -->
+        <button id="startBtn">Start</button>
+        <!-- Holds the current question and answers to be cycled by JS, intializes hidden -->
+        <div id="questionBox" class="hidden">
+          <p id="question"></p>
+          <div id="answers">
+            <button class="answer"></button>
+            <button class="answer"></button>
+            <button class="answer"></button>
+            <button class="answer"></button>
+          </div>
+        </div>
+        <!-- Holds the results to be displayed after quiz ends -->
+        <div id="result" class="hidden">
+          <p id="resultText"></p>
+        </div>
+    </div>
+  <script src="./assets/js/script.js"></script>
 </body>
 </html>

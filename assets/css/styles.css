@@ -1,0 +1,41 @@
+/* Displays html content as a flexbox centered in the screen also standardizes webpage viewing*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Hides content with hidden class*/
+.hidden {
+    display: none;
+}
+
+/* Change header 1 size to 250%*/
+h1 {
+    font-size: 250%;
+    padding-bottom: 1%;
+}
+
+/* Centers text */
+.main {
+    text-align: center;
+}
+
+/* Styles the Start button */
+#startBtn {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #3E236E;
+}
+
+/* Changes */
+#startBtn:hover {
+    background-color: #966FD6;
+}
+
+
