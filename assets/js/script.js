@@ -79,6 +79,10 @@ function showResults() {
     // removes the result of the last question after some time
     setTimeout(function() {
         result.classList.add("hidden");
+        // Ensures that even if someone is ripidly spam clicking and ends the game before this timeout function is called that the end results will still appear
+        if (!gameRunning){
+            endGame();
+        }
     }, 700);
 }
 
