@@ -9,9 +9,22 @@
   <title>Quiz Game</title>
 </head>
 <body>
+      <!-- Header of the Page -->
+    <header>
+        <nav>
+          <div class="nav-left">
+            <a href="#" id="highscoreLink">View Highscores</a>
+          </div>
+          <div class="nav-right">
+            <p id="timer">Timer: <span id="timeLeft"></span></p>
+          </div>
+        </nav>
+      </header>
+
     <!-- Holds all the content on this page -->
     <div class="main">
         <h1>Coding Quiz Game</h1>
+        <p>Try to answer the following code-related questions within the time limit. Keep in mind incorrect answers will penalize your time by ten seconds!</p>
         <!-- Start button -->
         <button id="startBtn">Start</button>
         <!-- Holds the current question and answers to be cycled by JS, intializes hidden -->
@@ -29,6 +42,10 @@
           <p id="resultText"></p>
         </div>
     </div>
+
+    <footer>
+        
+    </footer>
   <script src="./assets/js/script.js"></script>
 </body>
 </html>
