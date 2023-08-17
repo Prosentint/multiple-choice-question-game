@@ -18,6 +18,7 @@ var gameRunning = false;
 var currentQuestionIndex = 0;
 var timeLeft = 60;
 var score = 0;
+var resultTimeout;
 
 // runs when start button is clicked to hide content no longer needed and displays questions
 function startGame() {
@@ -81,8 +82,9 @@ function selectAnswer(selectedIndex, correctIndex) {
 // called after selecting an answer and will display either correct or incorrect
 function showResults() {
     result.classList.remove("hidden");
+    clearTimeout(resultTimeout)
     // removes the result of the last question after 1 sec
-    setTimeout(function() {
+    resultTimeout = setTimeout(function() {
         result.classList.add("hidden");
         // Ensures that even if someone is rapidly spam clicking and ends the game before this timeout function is called that the end results will still appear
         if (!gameRunning){
