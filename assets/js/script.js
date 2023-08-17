@@ -78,17 +78,17 @@ function selectAnswer(selectedIndex, correctIndex) {
     showResults();
 }
 
-// called after selecting an answer and will display either correct or incorrec
+// called after selecting an answer and will display either correct or incorrect
 function showResults() {
     result.classList.remove("hidden");
-    // removes the result of the last question after some time
+    // removes the result of the last question after 1 sec
     setTimeout(function() {
         result.classList.add("hidden");
-        // Ensures that even if someone is ripidly spam clicking and ends the game before this timeout function is called that the end results will still appear
+        // Ensures that even if someone is rapidly spam clicking and ends the game before this timeout function is called that the end results will still appear
         if (!gameRunning){
             endGame();
         }
-    }, 700);
+    }, 1000);
 }
 
 // Called when you run out of questions or timer ends to hide question box and reveal final score
@@ -103,9 +103,14 @@ function endGame() {
 // Runs when submiting the score form ensures that initials were submited to accompany the score. If it does then it saves the score and redirects to highscores
 function submitScore(event) {
     event.preventDefault();
+    var letters = /^[A-Z]*$/;
     var initials = initialsInput.value.toUpperCase();
+    // Validates input to ensure intials are only letters and atleast two letters long
     if (initials.length < 2){
         alert("Must input atleast 2 initials to submit");
+        return;
+    } else if (!letters.test(initials)){
+        alert("Input can only include letters");
         return;
     }
     var submittedScore = {initials, score};
