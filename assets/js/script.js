@@ -16,9 +16,12 @@ var clearScoresBtn = document.getElementById("clearScoresBtn");
 // creating varaibles that will be needed
 var gameRunning = false;
 var currentQuestionIndex = 0;
-var timeLeft = 60;
 var score = 0;
 var resultTimeout;
+// number of seconds given for quiz
+var timeLeft = 60;
+// amount of time lost or points gained per incorrect or correct answers
+var points = 10;
 
 // runs when start button is clicked to hide content no longer needed and displays questions
 function startGame() {
@@ -63,10 +66,10 @@ function showQuestion() {
 function selectAnswer(selectedIndex, correctIndex) {
         // determines if the selection was correct or not
     if (selectedIndex === correctIndex) {
-      score += 10;
+      score += points;
       resultText.innerText = "Correct!";
     } else {
-      timeLeft -= 10;
+      timeLeft -= points;
       resultText.innerText = "Incorrect!";
     }
     currentQuestionIndex++;
